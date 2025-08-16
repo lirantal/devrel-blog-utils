@@ -1,3 +1,2 @@
-export async function add (arg1: number, arg2: number): Promise<number> {
-  return Promise.resolve(arg1 + arg2)
-}
+export { MarkdownFrontmatterExtractor } from './utils/markdown-frontmatter-extractor.js'
+export type { FrontmatterExtractorOptions } from './utils/markdown-frontmatter-extractor.js'

@@ -4,7 +4,9 @@
   "description": "Blog utilities for DevRel, Developer Advocates and Bloggers",
   "types": "dist/main.d.ts",
   "type": "module",
-  "bin": "./dist/bin/cli.cjs",
+  "bin": {
+    "extract-frontmatter": "./dist/bin/cli.cjs"
+  },
   "exports": {
     ".": {
       "import": {
@@ -69,7 +71,7 @@
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.7",
-    "@types/node": "^20.14.10",
+    "@types/node": "^20.19.11",
     "c8": "^10.1.2",
     "eslint": "^9.6.0",
     "eslint-plugin-security": "^3.0.1",
@@ -103,5 +105,12 @@
       "lcov",
       "html"
     ]
+  },
+  "dependencies": {
+    "mdast-util-from-markdown": "^2.0.2",
+    "mdast-util-frontmatter": "^2.0.1",
+    "mdast-util-to-markdown": "^2.1.2",
+    "micromark-extension-frontmatter": "^2.0.0",
+    "yaml": "^2.8.1"
   }
 }
