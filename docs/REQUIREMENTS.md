@@ -13,6 +13,11 @@ Create a TypeScript CLI project that provides Bloggers and DevRel practitioners 
 #### Overview
 A utility to extract structured data from markdown files that contain frontmatter (metadata enclosed in `---` blocks at the top of the file).
 
+### 2. Markdown Frontmatter Updater
+
+#### Overview
+A utility to update, modify, and manage frontmatter in markdown files, supporting both existing frontmatter modification and creation of new frontmatter.
+
 #### Functional Requirements
 
 **Core Functionality:**
@@ -30,6 +35,31 @@ A utility to extract structured data from markdown files that contain frontmatte
 - Gracefully handle missing files
 - Provide meaningful error messages
 - Handle malformed frontmatter gracefully
+
+#### Functional Requirements for Markdown Frontmatter Updater
+
+**Core Functionality:**
+- Update entire frontmatter with new data
+- Update specific fields while preserving others
+- Remove specified fields from frontmatter
+- Create new frontmatter when none exists (optional)
+- Preserve existing frontmatter structure and formatting
+
+**Field Management:**
+- Merge new fields with existing frontmatter
+- Support complex data types (arrays, objects, booleans, null)
+- Maintain YAML formatting and structure
+- Handle field removal without affecting other fields
+
+**Options and Configuration:**
+- `createIfMissing`: Option to create frontmatter when none exists
+- `preserveFormatting`: Maintain existing YAML structure and formatting
+
+**Error Handling:**
+- Gracefully handle missing files
+- Provide meaningful error messages for frontmatter operations
+- Handle malformed YAML gracefully
+- Support rollback or safe operations
 
 #### Technical Requirements
 
@@ -74,6 +104,40 @@ extract-frontmatter ./blog-post.md
 extract-frontmatter ./blog-post.md --fields=title,author,date
 ```
 
+#### CLI Interface Requirements for Markdown Frontmatter Updater
+
+**Command Structure:**
+```
+extract-frontmatter <file-path> [--update '{"field":"value"}' | --set field="value" | --remove field1,field2 | --create]
+```
+
+**Arguments:**
+- `file-path`: Required path to markdown file
+- `--update`: JSON string with new frontmatter data
+- `--set`: Key-value pairs for specific field updates
+- `--remove`: Comma-separated list of fields to remove
+- `--create`: Flag to create frontmatter if missing
+
+**Output:**
+- Success confirmation messages
+- Clear error messages for failures
+- Proper exit codes (0 for success, 1 for errors)
+
+**Usage Examples:**
+```bash
+# Update entire frontmatter
+extract-frontmatter ./blog-post.md --update='{"title":"New Title","status":"published"}'
+
+# Update specific fields
+extract-frontmatter ./blog-post.md --set title="New Title" author="New Author"
+
+# Remove specific fields
+extract-frontmatter ./blog-post.md --remove tags,draft
+
+# Create frontmatter if missing
+extract-frontmatter ./blog-post.md --create --update='{"title":"New Post"}'
+```
+
 ## ✅ Acceptance Criteria
 
 ### Functional Acceptance Criteria
@@ -98,6 +162,32 @@ extract-frontmatter ./blog-post.md --fields=title,author,date
    - [x] Process command line arguments correctly
    - [x] Output JSON in readable format
    - [x] Handle both success and error cases
+
+### Functional Acceptance Criteria for Markdown Frontmatter Updater
+
+1. **Basic Updates**
+   - [x] Successfully update entire frontmatter with new data
+   - [x] Update specific fields while preserving others
+   - [x] Remove specified fields without affecting others
+   - [x] Create new frontmatter when none exists (with createIfMissing option)
+
+2. **Field Management**
+   - [x] Merge new fields with existing frontmatter
+   - [x] Support complex data types (arrays, objects, booleans, null)
+   - [x] Maintain YAML formatting and structure
+   - [x] Handle field removal gracefully
+
+3. **Error Handling**
+   - [x] Provide clear error messages for frontmatter operations
+   - [x] Handle missing files gracefully
+   - [x] Handle malformed YAML gracefully
+   - [x] Support safe operations with proper error codes
+
+4. **CLI Interface**
+   - [x] Process all update commands correctly (--update, --set, --remove, --create)
+   - [x] Show success confirmation messages
+   - [x] Handle both success and error cases
+   - [x] Support all specified command-line options
 
 ### Technical Acceptance Criteria
 
@@ -158,11 +248,12 @@ extract-frontmatter ./blog-post.md --fields=title,author,date
 
 ## 📊 Success Metrics
 
-- **Test Coverage**: ≥ 90% (Achieved: 97.7%)
+- **Test Coverage**: ≥ 90% (Achieved: 95.13%)
 - **Build Success**: 100% successful compilations
-- **CLI Functionality**: All specified commands working
+- **CLI Functionality**: All specified commands working for both utilities
 - **Error Handling**: Graceful handling of all error scenarios
 - **Performance**: Sub-second response time for typical files
+- **Utilities**: 2 fully functional utilities with comprehensive testing
 
 ## 🚀 Future Enhancements
 

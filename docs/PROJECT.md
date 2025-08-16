@@ -9,7 +9,9 @@ This project aims to streamline common blog management tasks by providing comman
 ## 🚀 Features
 
 - **Markdown Frontmatter Extraction**: Extract structured data from markdown files with frontmatter
+- **Markdown Frontmatter Updates**: Update, modify, and manage frontmatter in markdown files
 - **Field Filtering**: Optionally filter specific fields from frontmatter data
+- **Field Management**: Add, remove, and modify specific frontmatter fields
 - **CLI Interface**: Easy-to-use command-line interface
 - **Programmatic API**: Use utilities as libraries in your own code
 - **Comprehensive Testing**: Full test coverage including end-to-end CLI testing
@@ -81,13 +83,15 @@ npm run release              # Publish packages
 devrel-blog-utils/
 ├── src/
 │   ├── utils/                    # Utility classes
-│   │   └── markdown-frontmatter-extractor.ts
+│   │   ├── markdown-frontmatter-extractor.ts
+│   │   └── markdown-frontmatter-updater.ts
 │   ├── bin/                      # CLI entry points
 │   │   └── cli.ts
 │   └── main.ts                   # Library exports
 ├── __tests__/                    # Test files
 │   ├── __fixtures__/             # Test data files
-│   └── markdown-frontmatter-extractor.test.ts
+│   ├── markdown-frontmatter-extractor.test.ts
+│   └── markdown-frontmatter-updater.test.ts
 ├── dist/                         # Built outputs
 ├── docs/                         # Project documentation
 └── package.json
@@ -104,6 +108,18 @@ npx extract-frontmatter ./blog-post.md
 # Extract specific fields only
 npx extract-frontmatter ./blog-post.md --fields=title,author,date
 
+# Update frontmatter with new data
+npx extract-frontmatter ./blog-post.md --update='{"title":"New Title","status":"published"}'
+
+# Update specific fields
+npx extract-frontmatter ./blog-post.md --set title="New Title" author="New Author"
+
+# Remove specific fields
+npx extract-frontmatter ./blog-post.md --remove tags,draft
+
+# Create frontmatter if missing
+npx extract-frontmatter ./blog-post.md --create --update='{"title":"New Post"}'
+
 # Run in development mode
 npm start -- ./blog-post.md --fields=title,author
 ```
@@ -111,7 +127,7 @@ npm start -- ./blog-post.md --fields=title,author
 ### Programmatic Usage
 
 ```typescript
-import { MarkdownFrontmatterExtractor } from 'devrel-blog-utils'
+import { MarkdownFrontmatterExtractor, MarkdownFrontmatterUpdater } from 'devrel-blog-utils'
 
 // Extract all frontmatter
 const extractor = new MarkdownFrontmatterExtractor('./blog-post.md')
@@ -122,6 +138,20 @@ const extractor = new MarkdownFrontmatterExtractor('./blog-post.md', {
   fields: ['title', 'author']
 })
 const result = await extractor.extract()
+
+// Update frontmatter fields
+const updater = new MarkdownFrontmatterUpdater('./blog-post.md')
+await updater.updateFields({
+  title: 'Updated Title',
+  status: 'published'
+})
+
+// Remove specific fields
+await updater.removeFields(['draft', 'tags'])
+
+// Create frontmatter if missing
+const updater = new MarkdownFrontmatterUpdater('./blog-post.md', { createIfMissing: true })
+await updater.updateFrontmatter({ title: 'New Post' })
 ```
 
 ## 🧪 Testing

@@ -310,3 +310,10 @@ interface FrontmatterExtractorOptions {
 
 **Properties:**
 - `fields`: Optional array of field names to extract
+
+## 🔗 Related Documentation
+
+- [Project Overview](../PROJECT.md)
+- [Requirements](../REQUIREMENTS.md)
+- [Markdown Frontmatter Updater](./markdown-frontmatter-updater.md)
+- [CLI Usage Guide](../PROJECT.md#cli-usage)

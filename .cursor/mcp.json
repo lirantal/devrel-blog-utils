@@ -1,0 +1,14 @@
+{
+    "mcpServers": {
+        "ai Docs": {
+            "url": "https://gitmcp.io/vercel/ai"
+        },
+        "Node.js API Docs": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "mcp-server-nodejs-api-docs"
+            ]
+        }
+    }
+}
