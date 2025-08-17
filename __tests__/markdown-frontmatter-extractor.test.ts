@@ -88,6 +88,7 @@ describe('MarkdownFrontmatterExtractor', () => {
       return new Promise<void>((resolve, reject) => {
         const cliProcess = spawn('node', [
           'dist/bin/cli.cjs',
+          'extract-frontmatter',
           path.join(fixturesDir, 'sample-blog-post.md')
         ], {
           stdio: ['pipe', 'pipe', 'pipe']
@@ -137,6 +138,7 @@ describe('MarkdownFrontmatterExtractor', () => {
       return new Promise<void>((resolve, reject) => {
         const cliProcess = spawn('node', [
           'dist/bin/cli.cjs',
+          'extract-frontmatter',
           path.join(fixturesDir, 'sample-blog-post.md'),
           '--fields=title,author'
         ], {
@@ -184,6 +186,7 @@ describe('MarkdownFrontmatterExtractor', () => {
       return new Promise<void>((resolve, reject) => {
         const cliProcess = spawn('node', [
           'dist/bin/cli.cjs',
+          'extract-frontmatter',
           path.join(fixturesDir, 'no-frontmatter.md')
         ], {
           stdio: ['pipe', 'pipe', 'pipe']
@@ -244,7 +247,7 @@ describe('MarkdownFrontmatterExtractor', () => {
             return
           }
 
-          assert.strictEqual(stderr.trim(), 'Usage: \n              Extract frontmatter: devrel-blog-utils <file-path> [--fields field1,field2]\n              Update frontmatter: devrel-blog-utils <file-path> --update \'{"title":"New Title","author":"New Author"}\'\n              Update fields: devrel-blog-utils <file-path> --set title="New Title" author="New Author"\n              Remove fields: devrel-blog-utils <file-path> --remove field1,field2\n              Create if missing: devrel-blog-utils <file-path> --create --update \'{"title":"New Title"}\'\n              Generate tags: devrel-blog-utils <file-path> --generate-tags [--create]')
+          assert.strictEqual(stderr.trim(), 'Usage: devrel-blog-utils <command> [options]\n\nCommands:\n  extract-frontmatter <file-path> [--fields field1,field2]\n    Extract frontmatter from a markdown file\n  \n  update-frontmatter <file-path> [--update \'{"field":"value"}\' | --set field="value" | --remove field1,field2 | --create]\n    Update frontmatter in a markdown file\n  \n  generate-tags <file-path> [--create]\n    Generate AI-powered tags for a markdown file\n\nExamples:\n  devrel-blog-utils extract-frontmatter ./blog-post.md\n  devrel-blog-utils extract-frontmatter ./blog-post.md --fields=title,author\n  devrel-blog-utils update-frontmatter ./blog-post.md --update=\'{"title":"New Title"}\'\n  devrel-blog-utils update-frontmatter ./blog-post.md --set title="New Title" author="New Author"\n  devrel-blog-utils update-frontmatter ./blog-post.md --remove tags,draft\n  devrel-blog-utils update-frontmatter ./blog-post.md --create --update=\'{"title":"New Post"}\'\n  devrel-blog-utils generate-tags ./blog-post.md\n  devrel-blog-utils generate-tags ./blog-post.md --create')
           resolve()
         })
 

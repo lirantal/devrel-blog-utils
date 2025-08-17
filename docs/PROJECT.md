@@ -106,28 +106,28 @@ devrel-blog-utils/
 
 ```bash
 # Extract all frontmatter from a markdown file
-npx devrel-blog-utils ./blog-post.md
+npx devrel-blog-utils extract-frontmatter ./blog-post.md
 
 # Extract specific fields only
-npx devrel-blog-utils ./blog-post.md --fields=title,author,date
+npx devrel-blog-utils extract-frontmatter ./blog-post.md --fields=title,author,date
 
 # Update frontmatter with new data
-npx devrel-blog-utils ./blog-post.md --update='{"title":"New Title","status":"published"}'
+npx devrel-blog-utils update-frontmatter ./blog-post.md --update='{"title":"New Title","status":"published"}'
 
 # Update specific fields
-npx devrel-blog-utils ./blog-post.md --set title="New Title" author="New Author"
+npx devrel-blog-utils update-frontmatter ./blog-post.md --set title="New Title" author="New Author"
 
 # Remove specific fields
-npx devrel-blog-utils ./blog-post.md --remove tags,draft
+npx devrel-blog-utils update-frontmatter ./blog-post.md --remove tags,draft
 
 # Create frontmatter if missing
-npx devrel-blog-utils ./blog-post.md --create --update='{"title":"New Post"}'
+npx devrel-blog-utils update-frontmatter ./blog-post.md --create --update='{"title":"New Post"}'
 
 # Generate AI-powered tags
-npx devrel-blog-utils ./blog-post.md --generate-tags
+npx devrel-blog-utils generate-tags ./blog-post.md
 
 # Generate tags and create frontmatter if missing
-npx devrel-blog-utils ./blog-post.md --generate-tags --create
+npx devrel-blog-utils generate-tags ./blog-post.md --create
 
 # Run in development mode
 npm start -- ./blog-post.md --fields=title,author

@@ -88,7 +88,7 @@ An AI-powered utility that automatically generates relevant tags for blog posts 
 
 **Command Structure:**
 ```
-devrel-blog-utils <file-path> [--fields field1,field2]
+devrel-blog-utils extract-frontmatter <file-path> [--fields field1,field2]
 ```
 
 **Arguments:**
@@ -103,17 +103,17 @@ devrel-blog-utils <file-path> [--fields field1,field2]
 **Usage Examples:**
 ```bash
 # Extract all frontmatter
-devrel-blog-utils ./blog-post.md
+devrel-blog-utils extract-frontmatter ./blog-post.md
 
 # Extract specific fields
-devrel-blog-utils ./blog-post.md --fields=title,author,date
+devrel-blog-utils extract-frontmatter ./blog-post.md --fields=title,author,date
 ```
 
 #### CLI Interface Requirements for Markdown Frontmatter Updater
 
 **Command Structure:**
 ```
-devrel-blog-utils <file-path> [--update '{"field":"value"}' | --set field="value" | --remove field1,field2 | --create]
+devrel-blog-utils update-frontmatter <file-path> [--update '{"field":"value"}' | --set field="value" | --remove field1,field2 | --create]
 ```
 
 **Arguments:**
@@ -131,23 +131,23 @@ devrel-blog-utils <file-path> [--update '{"field":"value"}' | --set field="value
 **Usage Examples:**
 ```bash
 # Update entire frontmatter
-devrel-blog-utils ./blog-post.md --update='{"title":"New Title","status":"published"}'
+devrel-blog-utils update-frontmatter ./blog-post.md --update='{"title":"New Title","status":"published"}'
 
 # Update specific fields
-devrel-blog-utils ./blog-post.md --set title="New Title" author="New Author"
+devrel-blog-utils update-frontmatter ./blog-post.md --set title="New Title" author="New Author"
 
 # Remove specific fields
-devrel-blog-utils ./blog-post.md --remove tags,draft
+devrel-blog-utils update-frontmatter ./blog-post.md --remove tags,draft
 
 # Create frontmatter if missing
-devrel-blog-utils ./blog-post.md --create --update='{"title":"New Post"}'
+devrel-blog-utils update-frontmatter ./blog-post.md --create --update='{"title":"New Post"}'
 ```
 
 #### CLI Interface Requirements for Generative Tags
 
 **Command Structure:**
 ```
-devrel-blog-utils <file-path> [--generate-tags [--create]]
+devrel-blog-utils generate-tags <file-path> [--create]
 ```
 
 **Arguments:**
@@ -163,13 +163,13 @@ devrel-blog-utils <file-path> [--generate-tags [--create]]
 **Usage Examples:**
 ```bash
 # Generate tags for existing frontmatter
-devrel-blog-utils ./blog-post.md --generate-tags
+devrel-blog-utils generate-tags ./blog-post.md
 
 # Generate tags and create frontmatter if missing
-devrel-blog-utils ./blog-post.md --generate-tags --create
+devrel-blog-utils generate-tags ./blog-post.md --create
 
 # Generate tags for multiple files using glob pattern
-devrel-blog-utils ./blog-*.md --generate-tags
+devrel-blog-utils generate-tags ./blog-*.md
 ```
 
 ## ✅ Acceptance Criteria

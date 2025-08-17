@@ -71,22 +71,22 @@ The utility is accessible through the unified CLI with the following commands:
 
 ### Update Entire Frontmatter
 ```bash
-devrel-blog-utils <file-path> --update='{"title":"New Title","status":"published"}'
+devrel-blog-utils update-frontmatter <file-path> --update='{"title":"New Title","status":"published"}'
 ```
 
 ### Update Specific Fields
 ```bash
-devrel-blog-utils <file-path> --set title="New Title" author="New Author"
+devrel-blog-utils update-frontmatter <file-path> --set title="New Title" author="New Author"
 ```
 
 ### Remove Fields
 ```bash
-devrel-blog-utils <file-path> --remove tags,draft
+devrel-blog-utils update-frontmatter <file-path> --remove tags,draft
 ```
 
 ### Create Frontmatter if Missing
 ```bash
-devrel-blog-utils <file-path> --create --update='{"title":"New Post"}'
+devrel-blog-utils update-frontmatter <file-path> --create --update='{"title":"New Post"}'
 ```
 
 ## 💻 Programmatic Usage

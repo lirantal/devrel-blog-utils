@@ -198,6 +198,7 @@ describe('MarkdownFrontmatterUpdater', () => {
       return new Promise<void>((resolve, reject) => {
         const cliProcess = spawn('node', [
           'dist/bin/cli.cjs',
+          'update-frontmatter',
           fixturePath,
           '--update={"title":"CLI Updated Title","status":"published"}'
         ], {
@@ -245,6 +246,7 @@ describe('MarkdownFrontmatterUpdater', () => {
       return new Promise<void>((resolve, reject) => {
         const cliProcess = spawn('node', [
           'dist/bin/cli.cjs',
+          'update-frontmatter',
           fixturePath,
           '--set',
           'title="CLI Set Title"',
@@ -294,6 +296,7 @@ describe('MarkdownFrontmatterUpdater', () => {
       return new Promise<void>((resolve, reject) => {
         const cliProcess = spawn('node', [
           'dist/bin/cli.cjs',
+          'update-frontmatter',
           fixturePath,
           '--remove=tags,draft'
         ], {
@@ -342,6 +345,7 @@ describe('MarkdownFrontmatterUpdater', () => {
       return new Promise<void>((resolve, reject) => {
         const cliProcess = spawn('node', [
           'dist/bin/cli.cjs',
+          'update-frontmatter',
           fixturePath,
           '--create',
           '--update={"title":"Created Title","author":"Created Author"}'

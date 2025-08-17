@@ -84,29 +84,29 @@ The utility is accessible through the unified CLI with the following commands:
 
 ### Generate Tags for Existing Frontmatter
 ```bash
-devrel-blog-utils <file-path> --generate-tags
+devrel-blog-utils generate-tags <file-path>
 ```
 
 ### Generate Tags and Create Frontmatter if Missing
 ```bash
-devrel-blog-utils <file-path> --generate-tags --create
+devrel-blog-utils generate-tags <file-path> --create
 ```
 
 ### Generate Tags for Multiple Files (Glob Pattern)
 ```bash
-devrel-blog-utils ./blog-*.md --generate-tags
+devrel-blog-utils generate-tags ./blog-*.md
 ```
 
 ### Examples
 ```bash
 # Generate tags for a single blog post
-devrel-blog-utils ./blog-post.md --generate-tags
+devrel-blog-utils generate-tags ./blog-post.md
 
 # Generate tags for all blog posts in current directory
-devrel-blog-utils ./*.md --generate-tags
+devrel-blog-utils generate-tags ./*.md
 
 # Generate tags and create frontmatter for posts without it
-devrel-blog-utils ./draft-*.md --generate-tags --create
+devrel-blog-utils generate-tags ./draft-*.md --create
 ```
 
 ## 💻 Programmatic Usage
