@@ -8,19 +8,19 @@ async function main () {
   const args = process.argv.slice(2)
 
   if (args.length === 0) {
-    console.error(`Usage: 
-              Extract frontmatter: extract-frontmatter <file-path> [--fields field1,field2]
-              Update frontmatter: extract-frontmatter <file-path> --update '{"title":"New Title","author":"New Author"}'
-              Update fields: extract-frontmatter <file-path> --set title="New Title" author="New Author"
-              Remove fields: extract-frontmatter <file-path> --remove field1,field2
-              Create if missing: extract-frontmatter <file-path> --create --update '{"title":"New Title"}'
-              Generate tags: extract-frontmatter <file-path> --generate-tags [--create]`)
+                  console.error(`Usage: 
+              Extract frontmatter: devrel-blog-utils <file-path> [--fields field1,field2]
+              Update frontmatter: devrel-blog-utils <file-path> --update '{"title":"New Title","author":"New Author"}'
+              Update fields: devrel-blog-utils <file-path> --set title="New Title" author="New Author"
+              Remove fields: devrel-blog-utils <file-path> --remove field1,field2
+              Create if missing: devrel-blog-utils <file-path> --create --update '{"title":"New Title"}'
+              Generate tags: devrel-blog-utils <file-path> --generate-tags [--create]`)
     process.exit(1)
   }
 
   const filePath = args[0]
   if (!filePath) {
-    console.error('Usage: extract-frontmatter <file-path> [--fields field1,field2]')
+    console.error('Usage: devrel-blog-utils <file-path> [--fields field1,field2]')
     process.exit(1)
   }
 

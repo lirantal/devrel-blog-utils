@@ -5,7 +5,7 @@
   "types": "dist/main.d.ts",
   "type": "module",
   "bin": {
-    "extract-frontmatter": "./dist/bin/cli.cjs"
+    "devrel-blog-utils": "./dist/bin/cli.cjs"
   },
   "exports": {
     ".": {

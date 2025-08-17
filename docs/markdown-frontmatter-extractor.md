@@ -104,7 +104,7 @@ private filterFields(data: Record<string, any>, fields: string[]): Record<string
 ### Command Structure
 
 ```bash
-extract-frontmatter <file-path> [--fields field1,field2]
+devrel-blog-utils <file-path> [--fields field1,field2]
 ```
 
 ### Argument Processing

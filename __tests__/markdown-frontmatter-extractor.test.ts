@@ -244,7 +244,7 @@ describe('MarkdownFrontmatterExtractor', () => {
             return
           }
 
-          assert.strictEqual(stderr.trim(), 'Usage: \n              Extract frontmatter: extract-frontmatter <file-path> [--fields field1,field2]\n              Update frontmatter: extract-frontmatter <file-path> --update \'{"title":"New Title","author":"New Author"}\'\n              Update fields: extract-frontmatter <file-path> --set title="New Title" author="New Author"\n              Remove fields: extract-frontmatter <file-path> --remove field1,field2\n              Create if missing: extract-frontmatter <file-path> --create --update \'{"title":"New Title"}\'\n              Generate tags: extract-frontmatter <file-path> --generate-tags [--create]')
+          assert.strictEqual(stderr.trim(), 'Usage: \n              Extract frontmatter: devrel-blog-utils <file-path> [--fields field1,field2]\n              Update frontmatter: devrel-blog-utils <file-path> --update \'{"title":"New Title","author":"New Author"}\'\n              Update fields: devrel-blog-utils <file-path> --set title="New Title" author="New Author"\n              Remove fields: devrel-blog-utils <file-path> --remove field1,field2\n              Create if missing: devrel-blog-utils <file-path> --create --update \'{"title":"New Title"}\'\n              Generate tags: devrel-blog-utils <file-path> --generate-tags [--create]')
           resolve()
         })
 

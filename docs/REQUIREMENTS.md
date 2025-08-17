@@ -88,7 +88,7 @@ An AI-powered utility that automatically generates relevant tags for blog posts 
 
 **Command Structure:**
 ```
-extract-frontmatter <file-path> [--fields field1,field2]
+devrel-blog-utils <file-path> [--fields field1,field2]
 ```
 
 **Arguments:**
@@ -103,17 +103,17 @@ extract-frontmatter <file-path> [--fields field1,field2]
 **Usage Examples:**
 ```bash
 # Extract all frontmatter
-extract-frontmatter ./blog-post.md
+devrel-blog-utils ./blog-post.md
 
 # Extract specific fields
-extract-frontmatter ./blog-post.md --fields=title,author,date
+devrel-blog-utils ./blog-post.md --fields=title,author,date
 ```
 
 #### CLI Interface Requirements for Markdown Frontmatter Updater
 
 **Command Structure:**
 ```
-extract-frontmatter <file-path> [--update '{"field":"value"}' | --set field="value" | --remove field1,field2 | --create]
+devrel-blog-utils <file-path> [--update '{"field":"value"}' | --set field="value" | --remove field1,field2 | --create]
 ```
 
 **Arguments:**
@@ -131,23 +131,23 @@ extract-frontmatter <file-path> [--update '{"field":"value"}' | --set field="val
 **Usage Examples:**
 ```bash
 # Update entire frontmatter
-extract-frontmatter ./blog-post.md --update='{"title":"New Title","status":"published"}'
+devrel-blog-utils ./blog-post.md --update='{"title":"New Title","status":"published"}'
 
 # Update specific fields
-extract-frontmatter ./blog-post.md --set title="New Title" author="New Author"
+devrel-blog-utils ./blog-post.md --set title="New Title" author="New Author"
 
 # Remove specific fields
-extract-frontmatter ./blog-post.md --remove tags,draft
+devrel-blog-utils ./blog-post.md --remove tags,draft
 
 # Create frontmatter if missing
-extract-frontmatter ./blog-post.md --create --update='{"title":"New Post"}'
+devrel-blog-utils ./blog-post.md --create --update='{"title":"New Post"}'
 ```
 
 #### CLI Interface Requirements for Generative Tags
 
 **Command Structure:**
 ```
-extract-frontmatter <file-path> [--generate-tags [--create]]
+devrel-blog-utils <file-path> [--generate-tags [--create]]
 ```
 
 **Arguments:**
@@ -163,13 +163,13 @@ extract-frontmatter <file-path> [--generate-tags [--create]]
 **Usage Examples:**
 ```bash
 # Generate tags for existing frontmatter
-extract-frontmatter ./blog-post.md --generate-tags
+devrel-blog-utils ./blog-post.md --generate-tags
 
 # Generate tags and create frontmatter if missing
-extract-frontmatter ./blog-post.md --generate-tags --create
+devrel-blog-utils ./blog-post.md --generate-tags --create
 
 # Generate tags for multiple files using glob pattern
-extract-frontmatter ./blog-*.md --generate-tags
+devrel-blog-utils ./blog-*.md --generate-tags
 ```
 
 ## ✅ Acceptance Criteria
