@@ -18,6 +18,11 @@ A utility to extract structured data from markdown files that contain frontmatte
 #### Overview
 A utility to update, modify, and manage frontmatter in markdown files, supporting both existing frontmatter modification and creation of new frontmatter.
 
+### 3. Generative Tags
+
+#### Overview
+An AI-powered utility that automatically generates relevant tags for blog posts using OpenAI-compatible Large Language Models (LLMs), supporting both single file and batch processing via glob patterns.
+
 #### Functional Requirements
 
 **Core Functionality:**
@@ -138,6 +143,35 @@ extract-frontmatter ./blog-post.md --remove tags,draft
 extract-frontmatter ./blog-post.md --create --update='{"title":"New Post"}'
 ```
 
+#### CLI Interface Requirements for Generative Tags
+
+**Command Structure:**
+```
+extract-frontmatter <file-path> [--generate-tags [--create]]
+```
+
+**Arguments:**
+- `file-path`: Required path to markdown file (supports glob patterns)
+- `--generate-tags`: Flag to generate AI-powered tags
+- `--create`: Optional flag to create frontmatter if missing
+
+**Output:**
+- Success confirmation messages with generated tags
+- Clear error messages for failures
+- Proper exit codes (0 for success, 1 for errors)
+
+**Usage Examples:**
+```bash
+# Generate tags for existing frontmatter
+extract-frontmatter ./blog-post.md --generate-tags
+
+# Generate tags and create frontmatter if missing
+extract-frontmatter ./blog-post.md --generate-tags --create
+
+# Generate tags for multiple files using glob pattern
+extract-frontmatter ./blog-*.md --generate-tags
+```
+
 ## ✅ Acceptance Criteria
 
 ### Functional Acceptance Criteria
@@ -188,6 +222,32 @@ extract-frontmatter ./blog-post.md --create --update='{"title":"New Post"}'
    - [x] Show success confirmation messages
    - [x] Handle both success and error cases
    - [x] Support all specified command-line options
+
+### Functional Acceptance Criteria for Generative Tags
+
+1. **AI Integration**
+   - [x] Successfully initialize OpenAI-compatible API client
+   - [x] Handle API configuration via environment variables
+   - [x] Generate relevant tags using LLM technology
+   - [x] Handle API errors gracefully with meaningful messages
+
+2. **File Processing**
+   - [x] Process single files and glob patterns correctly
+   - [x] Extract existing frontmatter for AI context
+   - [x] Update files with generated tags
+   - [x] Create new frontmatter when none exists (with createIfMissing option)
+
+3. **Tag Generation**
+   - [x] Generate relevant, SEO-friendly tags
+   - [x] Use structured AI responses with Zod schema validation
+   - [x] Handle AI responses reliably with consistent format
+   - [x] Support batch processing for multiple files
+
+4. **CLI Interface**
+   - [x] Process --generate-tags command correctly
+   - [x] Support --create flag for missing frontmatter
+   - [x] Show success confirmation messages
+   - [x] Handle both success and error cases
 
 ### Technical Acceptance Criteria
 
@@ -253,7 +313,7 @@ extract-frontmatter ./blog-post.md --create --update='{"title":"New Post"}'
 - **CLI Functionality**: All specified commands working for both utilities
 - **Error Handling**: Graceful handling of all error scenarios
 - **Performance**: Sub-second response time for typical files
-- **Utilities**: 2 fully functional utilities with comprehensive testing
+- **Utilities**: 3 fully functional utilities with comprehensive testing
 
 ## 🚀 Future Enhancements
 

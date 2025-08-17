@@ -35,7 +35,7 @@
     "bin"
   ],
   "scripts": {
-    "start": "node --import tsx src/bin/cli.ts",
+    "start": "op run --env-file=./.env node --import tsx --env-file=.env src/bin/cli.ts",
     "build": "tsc && tsup",
     "lint": "eslint . && npm run lint:lockfile && npm run lint:markdown",
     "lint:markdown": "npx -y markdownlint-cli@0.45.0 -c .github/.markdownlint.yml -i '.git' -i '__tests__' -i '.github' -i '.changeset' -i 'CODE_OF_CONDUCT.md' -i 'CHANGELOG.md' -i 'docs/**' -i 'node_modules' -i 'dist' '**/**.md' --fix",
@@ -107,10 +107,14 @@
     ]
   },
   "dependencies": {
+    "@ai-sdk/openai": "^2.0.15",
+    "@ai-sdk/openai-compatible": "^1.0.7",
+    "ai": "^5.0.15",
     "mdast-util-from-markdown": "^2.0.2",
     "mdast-util-frontmatter": "^2.0.1",
     "mdast-util-to-markdown": "^2.1.2",
     "micromark-extension-frontmatter": "^2.0.0",
-    "yaml": "^2.8.1"
+    "yaml": "^2.8.1",
+    "zod": "^3.25.76"
   }
 }

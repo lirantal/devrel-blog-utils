@@ -2,17 +2,19 @@
 
 import { MarkdownFrontmatterExtractor } from '../utils/markdown-frontmatter-extractor.js'
 import { MarkdownFrontmatterUpdater } from '../utils/markdown-frontmatter-updater.js'
+import { GenerativeTags } from '../utils/generative-tags.js'
 
 async function main () {
   const args = process.argv.slice(2)
 
   if (args.length === 0) {
     console.error(`Usage: 
-  Extract frontmatter: extract-frontmatter <file-path> [--fields field1,field2]
-  Update frontmatter: extract-frontmatter <file-path> --update '{"title":"New Title","author":"New Author"}'
-  Update fields: extract-frontmatter <file-path> --set title="New Title" author="New Author"
-  Remove fields: extract-frontmatter <file-path> --remove field1,field2
-  Create if missing: extract-frontmatter <file-path> --create --update '{"title":"New Title"}'`)
+              Extract frontmatter: extract-frontmatter <file-path> [--fields field1,field2]
+              Update frontmatter: extract-frontmatter <file-path> --update '{"title":"New Title","author":"New Author"}'
+              Update fields: extract-frontmatter <file-path> --set title="New Title" author="New Author"
+              Remove fields: extract-frontmatter <file-path> --remove field1,field2
+              Create if missing: extract-frontmatter <file-path> --create --update '{"title":"New Title"}'
+              Generate tags: extract-frontmatter <file-path> --generate-tags [--create]`)
     process.exit(1)
   }
 
@@ -27,9 +29,18 @@ async function main () {
   const setOption = args.find(arg => arg === '--set')
   const removeOption = args.find(arg => arg.startsWith('--remove='))
   const createOption = args.find(arg => arg === '--create')
+  const generateTagsOption = args.find(arg => arg === '--generate-tags')
 
   try {
-    if (updateOption || setOption || removeOption) {
+    if (generateTagsOption) {
+      // Generate tags operation
+      const generativeTags = new GenerativeTags(filePath, {
+        createIfMissing: !!createOption
+      })
+
+      await generativeTags.run()
+      console.log('Tags generated successfully')
+    } else if (updateOption || setOption || removeOption) {
       // Update operations
       const updater = new MarkdownFrontmatterUpdater(filePath, {
         createIfMissing: !!createOption

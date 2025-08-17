@@ -10,6 +10,7 @@ This project aims to streamline common blog management tasks by providing comman
 
 - **Markdown Frontmatter Extraction**: Extract structured data from markdown files with frontmatter
 - **Markdown Frontmatter Updates**: Update, modify, and manage frontmatter in markdown files
+- **AI-Powered Tag Generation**: Automatically generate relevant tags using OpenAI-compatible LLMs
 - **Field Filtering**: Optionally filter specific fields from frontmatter data
 - **Field Management**: Add, remove, and modify specific frontmatter fields
 - **CLI Interface**: Easy-to-use command-line interface
@@ -84,14 +85,16 @@ devrel-blog-utils/
 ├── src/
 │   ├── utils/                    # Utility classes
 │   │   ├── markdown-frontmatter-extractor.ts
-│   │   └── markdown-frontmatter-updater.ts
+│   │   ├── markdown-frontmatter-updater.ts
+│   │   └── generative-tags.ts
 │   ├── bin/                      # CLI entry points
 │   │   └── cli.ts
 │   └── main.ts                   # Library exports
 ├── __tests__/                    # Test files
 │   ├── __fixtures__/             # Test data files
 │   ├── markdown-frontmatter-extractor.test.ts
-│   └── markdown-frontmatter-updater.test.ts
+│   ├── markdown-frontmatter-updater.test.ts
+│   └── generative-tags.test.ts
 ├── dist/                         # Built outputs
 ├── docs/                         # Project documentation
 └── package.json
@@ -119,6 +122,12 @@ npx extract-frontmatter ./blog-post.md --remove tags,draft
 
 # Create frontmatter if missing
 npx extract-frontmatter ./blog-post.md --create --update='{"title":"New Post"}'
+
+# Generate AI-powered tags
+npx extract-frontmatter ./blog-post.md --generate-tags
+
+# Generate tags and create frontmatter if missing
+npx extract-frontmatter ./blog-post.md --generate-tags --create
 
 # Run in development mode
 npm start -- ./blog-post.md --fields=title,author
@@ -152,6 +161,14 @@ await updater.removeFields(['draft', 'tags'])
 // Create frontmatter if missing
 const updater = new MarkdownFrontmatterUpdater('./blog-post.md', { createIfMissing: true })
 await updater.updateFrontmatter({ title: 'New Post' })
+
+// Generate AI-powered tags
+const generativeTags = new GenerativeTags('./blog-post.md')
+await generativeTags.run()
+
+// Generate tags for multiple files using glob pattern
+const generativeTags = new GenerativeTags('./blog-*.md')
+await generativeTags.run()
 ```
 
 ## 🧪 Testing
