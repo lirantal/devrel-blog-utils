@@ -178,20 +178,19 @@ export class GenerativeTags {
       const systemPrompt = `You are a helpful marketing expert that generates relevant tags for blog posts. 
 
 You will be provided a frontmatter JSON object for a blog post.
-You need to analyze the provided frontmatter and suggest EXACTLY 3 tags that would be most relevant for SEO and content discovery.
+You need to analyze the provided frontmatter and suggest several tags that would be most relevant for SEO and content discovery.
 
-ALWAYS OBIDE BY THESE RULES:
+RULES:
 - THIS IS IMPORTANT: ALWAYS RETURN ONLY JSON ARRAY OF TAGS, no other format is acceptable
-- Use 1-3 word tags that are specific and relevant to the blog post
-- Focus on technical topics, programming languages, frameworks, or concepts
-- Avoid generic words like "blog", "post", "article"
-- REMEMBER THIS IS IMPORTANT: ALWAYS RETURN JSON FORMATTED RESPONSE
+- Use 1-3 tags that are specific and relevant to the blog post
+- DO NOT USE generic words like "blog", "post", "article"
+- Think of tags related to the frontmatter title, description and slug to extract the most relevant tags
 
-<example-response>
+EXAMPLE RESPONSE:
 {
-  "tags": ["yarn", "cross-site-scripting", "devrel"]
+  "tags": ["tag1", "tag2", "tag3"]
 }
-</example-response>`
+`
       const userPrompt = frontmatter
         ? JSON.stringify(frontmatter, null, 2)
         : 'No frontmatter available'
