@@ -114,7 +114,7 @@
     "mdast-util-frontmatter": "^2.0.1",
     "mdast-util-to-markdown": "^2.1.2",
     "micromark-extension-frontmatter": "^2.0.0",
-    "yaml": "^2.8.1",
+    "yaml": "^2.8.2",
     "zod": "^3.25.76"
   }
 }
