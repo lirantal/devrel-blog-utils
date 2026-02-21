@@ -313,7 +313,7 @@ interface FrontmatterExtractorOptions {
 
 ## 🔗 Related Documentation
 
-- [Project Overview](../PROJECT.md)
-- [Requirements](../REQUIREMENTS.md)
+- [Project Overview](./PROJECT.md)
+- [Requirements](./REQUIREMENTS.md)
 - [Markdown Frontmatter Updater](./markdown-frontmatter-updater.md)
-- [CLI Usage Guide](../PROJECT.md#cli-usage)
+- [CLI Usage Guide](./PROJECT.md#cli-usage)
