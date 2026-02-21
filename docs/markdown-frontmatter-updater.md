@@ -268,7 +268,7 @@ When true, maintains existing YAML structure. Default: `true`.
 
 ## 🔗 Related Documentation
 
-- [Project Overview](../PROJECT.md)
-- [Requirements](../REQUIREMENTS.md)
+- [Project Overview](./PROJECT.md)
+- [Requirements](./REQUIREMENTS.md)
 - [Markdown Frontmatter Extractor](./markdown-frontmatter-extractor.md)
-- [CLI Usage Guide](../PROJECT.md#cli-usage)
+- [CLI Usage Guide](./PROJECT.md#cli-usage)
