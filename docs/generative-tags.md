@@ -310,11 +310,11 @@ When true, creates new frontmatter if none exists. Default: `false`
 
 ## 🔗 Related Documentation
 
-- [Project Overview](../PROJECT.md)
-- [Requirements](../REQUIREMENTS.md)
+- [Project Overview](./PROJECT.md)
+- [Requirements](./REQUIREMENTS.md)
 - [Markdown Frontmatter Extractor](./markdown-frontmatter-extractor.md)
 - [Markdown Frontmatter Updater](./markdown-frontmatter-updater.md)
-- [CLI Usage Guide](../PROJECT.md#cli-usage)
+- [CLI Usage Guide](./PROJECT.md#cli-usage)
 
 ## 🚀 Getting Started
 
