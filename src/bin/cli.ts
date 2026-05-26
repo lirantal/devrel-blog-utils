@@ -5,7 +5,7 @@ import { MarkdownFrontmatterExtractor } from '../utils/markdown-frontmatter-extr
 import { MarkdownFrontmatterUpdater } from '../utils/markdown-frontmatter-updater.js'
 import { GenerativeTags } from '../utils/generative-tags.js'
 
-function showUsage() {
+function showUsage () {
   console.error(`Usage: devrel-blog-utils <command> [options]
 
 Commands:
@@ -30,7 +30,7 @@ Examples:
   process.exit(1)
 }
 
-async function handleExtractFrontmatter(args: string[]) {
+async function handleExtractFrontmatter (args: string[]) {
   if (args.length === 0) {
     console.error('Error: File path is required for extract-frontmatter command')
     process.exit(1)
@@ -41,7 +41,7 @@ async function handleExtractFrontmatter(args: string[]) {
     console.error('Error: File path is required for extract-frontmatter command')
     process.exit(1)
   }
-  
+
   const options: { fields?: string[] } = {}
 
   // Parse --fields option
@@ -68,7 +68,7 @@ async function handleExtractFrontmatter(args: string[]) {
   }
 }
 
-async function handleUpdateFrontmatter(args: string[]) {
+async function handleUpdateFrontmatter (args: string[]) {
   if (args.length === 0) {
     console.error('Error: File path is required for update-frontmatter command')
     process.exit(1)
@@ -79,7 +79,7 @@ async function handleUpdateFrontmatter(args: string[]) {
     console.error('Error: File path is required for update-frontmatter command')
     process.exit(1)
   }
-  
+
   const parsedArgs = parseArgs({
     args: args.slice(1),
     options: {
@@ -103,7 +103,7 @@ async function handleUpdateFrontmatter(args: string[]) {
     } else if (parsedArgs.values.set && parsedArgs.values.set.length > 0) {
       // Parse --set key1="value1" key2="value2" format
       const fieldUpdates: Record<string, any> = {}
-      
+
       for (const setArg of parsedArgs.values.set) {
         if (setArg.includes('=')) {
           const parts = setArg.split('=', 2)
@@ -135,7 +135,7 @@ async function handleUpdateFrontmatter(args: string[]) {
   }
 }
 
-async function handleGenerateTags(args: string[]) {
+async function handleGenerateTags (args: string[]) {
   if (args.length === 0) {
     console.error('Error: File path is required for generate-tags command')
     process.exit(1)
@@ -146,7 +146,7 @@ async function handleGenerateTags(args: string[]) {
     console.error('Error: File path is required for generate-tags command')
     process.exit(1)
   }
-  
+
   const parsedArgs = parseArgs({
     args: args.slice(1),
     options: {
@@ -168,7 +168,7 @@ async function handleGenerateTags(args: string[]) {
   }
 }
 
-async function main() {
+async function main () {
   const args = process.argv.slice(2)
 
   if (args.length === 0) {
