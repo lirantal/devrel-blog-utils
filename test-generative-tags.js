@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 // Simple test script for GenerativeTags utility
-import { GenerativeTags } from './src/utils/generative-tags.js'
+import { GenerativeTags } from './src/utils/generative-tags.ts'
 
 async function testGenerativeTags () {
   try {
