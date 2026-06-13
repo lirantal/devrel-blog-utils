@@ -16,7 +16,7 @@ export interface GenerativeTagsOptions {
 export class GenerativeTags {
   private filePath: string
   private options: GenerativeTagsOptions
-  private model: any
+  private model: ReturnType<ReturnType<typeof createOpenAICompatible>['chatModel']>
 
   constructor (filePath: string, options: GenerativeTagsOptions = {}) {
     this.filePath = path.resolve(filePath)
@@ -55,7 +55,7 @@ export class GenerativeTags {
         await this.processSingleFile(this.filePath)
       }
     } catch (error) {
-      throw new Error(`Failed to generate tags: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      throw new Error(`Failed to generate tags: ${error instanceof Error ? error.message : 'Unknown error'}`, { cause: error })
     }
   }
 
@@ -118,7 +118,7 @@ export class GenerativeTags {
         }
       }
     } catch (error) {
-      throw new Error(`Failed to process glob pattern: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      throw new Error(`Failed to process glob pattern: ${error instanceof Error ? error.message : 'Unknown error'}`, { cause: error })
     }
   }
 
@@ -144,7 +144,7 @@ export class GenerativeTags {
 
       return matchingFiles
     } catch (error) {
-      throw new Error(`Failed to read directory ${dir}: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      throw new Error(`Failed to read directory ${dir}: ${error instanceof Error ? error.message : 'Unknown error'}`, { cause: error })
     }
   }
 
@@ -173,7 +173,7 @@ export class GenerativeTags {
   /**
    * Generate tags using AI
    */
-  private async generateTags (frontmatter: Record<string, any> | null): Promise<string[]> {
+  private async generateTags (frontmatter: Record<string, unknown> | null): Promise<string[]> {
     try {
       const systemPrompt = `You are a helpful marketing expert that generates relevant tags for blog posts. 
 
@@ -214,7 +214,7 @@ EXAMPLE RESPONSE:
       const selectedTags = tags.slice(0, 3)
       return selectedTags
     } catch (error) {
-      throw new Error(`Failed to generate tags with AI: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      throw new Error(`Failed to generate tags with AI: ${error instanceof Error ? error.message : 'Unknown error'}`, { cause: error })
     }
   }
 

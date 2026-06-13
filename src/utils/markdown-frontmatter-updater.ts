@@ -27,20 +27,20 @@ export class MarkdownFrontmatterUpdater {
   /**
    * Update frontmatter in the markdown file
    */
-  async updateFrontmatter (updates: Record<string, any>): Promise<void> {
+  async updateFrontmatter (updates: Record<string, unknown>): Promise<void> {
     try {
       const content = await fs.readFile(this.filePath, 'utf-8')
       const updatedContent = this.updateFrontmatterInContent(content, updates)
       await fs.writeFile(this.filePath, updatedContent, 'utf-8')
     } catch (error) {
-      throw new Error(`Failed to update frontmatter in ${this.filePath}: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      throw new Error(`Failed to update frontmatter in ${this.filePath}: ${error instanceof Error ? error.message : 'Unknown error'}`, { cause: error })
     }
   }
 
   /**
    * Update specific fields in the frontmatter
    */
-  async updateFields (fieldUpdates: Record<string, any>): Promise<void> {
+  async updateFields (fieldUpdates: Record<string, unknown>): Promise<void> {
     try {
       const content = await fs.readFile(this.filePath, 'utf-8')
       const existingFrontmatter = this.extractExistingFrontmatter(content)
@@ -54,7 +54,7 @@ export class MarkdownFrontmatterUpdater {
       const updatedContent = this.updateFrontmatterInContent(content, updatedFrontmatter)
       await fs.writeFile(this.filePath, updatedContent, 'utf-8')
     } catch (error) {
-      throw new Error(`Failed to update fields in ${this.filePath}: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      throw new Error(`Failed to update fields in ${this.filePath}: ${error instanceof Error ? error.message : 'Unknown error'}`, { cause: error })
     }
   }
 
@@ -79,26 +79,26 @@ export class MarkdownFrontmatterUpdater {
       const updatedContent = this.updateFrontmatterInContent(content, updatedFrontmatter)
       await fs.writeFile(this.filePath, updatedContent, 'utf-8')
     } catch (error) {
-      throw new Error(`Failed to remove fields from ${this.filePath}: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      throw new Error(`Failed to remove fields from ${this.filePath}: ${error instanceof Error ? error.message : 'Unknown error'}`, { cause: error })
     }
   }
 
   /**
    * Get the current frontmatter without modifying the file
    */
-  async getCurrentFrontmatter (): Promise<Record<string, any> | null> {
+  async getCurrentFrontmatter (): Promise<Record<string, unknown> | null> {
     try {
       const content = await fs.readFile(this.filePath, 'utf-8')
       return this.extractExistingFrontmatter(content)
     } catch (error) {
-      throw new Error(`Failed to read frontmatter from ${this.filePath}: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      throw new Error(`Failed to read frontmatter from ${this.filePath}: ${error instanceof Error ? error.message : 'Unknown error'}`, { cause: error })
     }
   }
 
   /**
    * Update frontmatter in content string
    */
-  private updateFrontmatterInContent (content: string, newFrontmatter: Record<string, any>): string {
+  private updateFrontmatterInContent (content: string, newFrontmatter: Record<string, unknown>): string {
     try {
       const ast = fromMarkdown(content, {
         extensions: [frontmatter(['yaml'])],
@@ -120,7 +120,7 @@ export class MarkdownFrontmatterUpdater {
 
       if (hasFrontmatter) {
         // Update existing frontmatter
-        const yamlNode = ast.children[frontmatterIndex] as any
+        const yamlNode = ast.children[frontmatterIndex] as unknown as { value: string }
         yamlNode.value = stringifyYaml(newFrontmatter, {
           lineWidth: -1,
           defaultStringType: 'PLAIN'
@@ -135,7 +135,7 @@ export class MarkdownFrontmatterUpdater {
           type: 'yaml' as const,
           value: yamlContent
         }
-        ast.children.unshift(yamlNode as any)
+        ast.children.unshift(yamlNode as unknown as (typeof ast.children)[number])
       } else {
         throw new Error('No frontmatter found and createIfMissing is false')
       }
@@ -145,14 +145,14 @@ export class MarkdownFrontmatterUpdater {
         extensions: [frontmatterToMarkdown(['yaml'])]
       })
     } catch (error) {
-      throw new Error(`Failed to update frontmatter in content: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      throw new Error(`Failed to update frontmatter in content: ${error instanceof Error ? error.message : 'Unknown error'}`, { cause: error })
     }
   }
 
   /**
    * Extract existing frontmatter from content
    */
-  private extractExistingFrontmatter (content: string): Record<string, any> | null {
+  private extractExistingFrontmatter (content: string): Record<string, unknown> | null {
     try {
       const ast = fromMarkdown(content, {
         extensions: [frontmatter(['yaml'])],
@@ -161,13 +161,13 @@ export class MarkdownFrontmatterUpdater {
 
       for (const node of ast.children) {
         if (node.type === 'yaml') {
-          return parseYaml((node as any).value) || {}
+          return parseYaml(node.value) || {}
         }
       }
 
       return null
     } catch (error) {
-      throw new Error(`Failed to extract existing frontmatter: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      throw new Error(`Failed to extract existing frontmatter: ${error instanceof Error ? error.message : 'Unknown error'}`, { cause: error })
     }
   }
 
