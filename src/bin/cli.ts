@@ -102,7 +102,7 @@ async function handleUpdateFrontmatter (args: string[]) {
       console.log('Frontmatter updated successfully')
     } else if (parsedArgs.values.set && parsedArgs.values.set.length > 0) {
       // Parse --set key1="value1" key2="value2" format
-      const fieldUpdates: Record<string, any> = {}
+      const fieldUpdates: Record<string, unknown> = {}
 
       for (const setArg of parsedArgs.values.set) {
         if (setArg.includes('=')) {
