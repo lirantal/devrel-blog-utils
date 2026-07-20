@@ -21,7 +21,7 @@ export class MarkdownFrontmatterExtractor {
   /**
    * Extract frontmatter data from the markdown file
    */
-  async extract (): Promise<Record<string, any> | null> {
+  async extract (): Promise<Record<string, unknown> | null> {
     try {
       const content = await fs.readFile(this.filePath, 'utf-8')
       const frontmatterData = this.parseFrontmatter(content)
@@ -37,14 +37,14 @@ export class MarkdownFrontmatterExtractor {
 
       return frontmatterData
     } catch (error) {
-      throw new Error(`Failed to extract frontmatter from ${this.filePath}: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      throw new Error(`Failed to extract frontmatter from ${this.filePath}: ${error instanceof Error ? error.message : 'Unknown error'}`, { cause: error })
     }
   }
 
   /**
    * Parse frontmatter from markdown content
    */
-  private parseFrontmatter (content: string): Record<string, any> | null {
+  private parseFrontmatter (content: string): Record<string, unknown> | null {
     try {
       const ast = fromMarkdown(content, {
         extensions: [frontmatter(['yaml'])],
@@ -59,15 +59,15 @@ export class MarkdownFrontmatterExtractor {
 
       return null
     } catch (error) {
-      throw new Error(`Failed to parse frontmatter: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      throw new Error(`Failed to parse frontmatter: ${error instanceof Error ? error.message : 'Unknown error'}`, { cause: error })
     }
   }
 
   /**
    * Filter frontmatter data to only include specified fields
    */
-  private filterFields (data: Record<string, any>, fields: string[]): Record<string, any> {
-    const filtered: Record<string, any> = {}
+  private filterFields (data: Record<string, unknown>, fields: string[]): Record<string, unknown> {
+    const filtered: Record<string, unknown> = {}
 
     for (const field of fields) {
       if (field in data) {

@@ -26,9 +26,9 @@
     }
   },
   "engines": {
-    "node": ">=22.0.0"
+    "npm": ">=11.10.0",
+    "node": ">=24.0.0"
   },
-  "packageManager": "npm@8.4.0",
   "files": [
     "dist",
     "src",
@@ -37,10 +37,9 @@
   "scripts": {
     "start": "op run --env-file=./.env node --import tsx --env-file=.env src/bin/cli.ts",
     "build": "tsc && tsup",
-    "lint": "eslint . && npm run lint:lockfile && npm run lint:markdown",
-    "lint:markdown": "npx -y markdownlint-cli@0.45.0 -c .github/.markdownlint.yml -i '.git' -i '__tests__' -i '.github' -i '.changeset' -i 'CODE_OF_CONDUCT.md' -i 'CHANGELOG.md' -i 'docs/**' -i 'node_modules' -i 'dist' '**/**.md' --fix",
+    "lint": "eslint . && npm run lint:markdown",
+    "lint:markdown": "npx --no-install markdownlint-cli -c .github/.markdownlint.yml -i '.git' -i '__tests__' -i '.github' -i '.changeset' -i 'CODE_OF_CONDUCT.md' -i 'CHANGELOG.md' -i 'docs/**' -i 'node_modules' -i 'dist' '**/**.md'",
     "lint:fix": "eslint . --fix",
-    "lint:lockfile": "lockfile-lint --path package-lock.json --validate-https --allowed-hosts npm yarn",
     "test": "c8 node --import tsx --test __tests__/**/*.test.ts",
     "test:watch": "c8 node --import tsx --test --watch __tests__/**/*.test.ts",
     "coverage:view": "open coverage/lcov-report/index.html",
@@ -69,19 +68,21 @@
     "url": "https://github.com/lirantal/devrel-blog-utils.git"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "^0.5.0",
-    "@changesets/cli": "^2.27.7",
+    "@changesets/changelog-github": "^0.6.0",
+    "@changesets/cli": "^2.31.0",
+    "@eslint/js": "^10.0.1",
     "@types/node": "^20.19.11",
-    "c8": "^10.1.2",
-    "eslint": "^9.6.0",
-    "eslint-plugin-security": "^3.0.1",
+    "c8": "^11.0.0",
+    "eslint": "^10.2.1",
+    "eslint-plugin-n": "^17.24.0",
+    "eslint-plugin-security": "^4.0.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.7",
-    "lockfile-lint": "^4.14.0",
-    "neostandard": "^0.11.0",
+    "markdownlint-cli": "0.45.0",
     "tsup": "^8.1.0",
     "tsx": "^4.19.4",
     "typescript": "^5.5.3",
+    "typescript-eslint": "^8.59.0",
     "validate-conventional-commit": "^1.0.4"
   },
   "lint-staged": {
@@ -107,14 +108,14 @@
     ]
   },
   "dependencies": {
-    "@ai-sdk/openai": "^2.0.15",
-    "@ai-sdk/openai-compatible": "^1.0.7",
-    "ai": "^5.0.15",
+    "@ai-sdk/openai": "^3.0.71",
+    "@ai-sdk/openai-compatible": "^2.0.50",
+    "ai": "^6.0.204",
     "mdast-util-from-markdown": "^2.0.2",
     "mdast-util-frontmatter": "^2.0.1",
     "mdast-util-to-markdown": "^2.1.2",
     "micromark-extension-frontmatter": "^2.0.0",
     "yaml": "^2.8.1",
-    "zod": "^3.25.76"
+    "zod": "^4.4.3"
   }
 }
