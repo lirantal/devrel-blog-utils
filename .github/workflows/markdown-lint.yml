@@ -23,6 +23,8 @@ jobs:
           node-version: '24.x'
           cache: 'npm'
 
+      - name: Set up pinned npm
+        run: bash "${{ github.workspace }}/.github/scripts/setup-npm.sh"
       - name: Install dependencies
         run: npm ci
 
