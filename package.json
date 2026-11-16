@@ -109,15 +109,15 @@
     ]
   },
   "dependencies": {
-    "@ai-sdk/openai": "^4.0.91",
-    "@ai-sdk/openai-compatible": "^3.0.67",
-    "ai": "^7.0.137",
+    "@ai-sdk/openai": "^4.0.96",
+    "@ai-sdk/openai-compatible": "^3.0.71",
+    "ai": "^7.0.143",
     "mdast-util-from-markdown": "^2.1.0",
     "mdast-util-frontmatter": "^2.0.1",
     "mdast-util-to-markdown": "^2.2.0",
     "micromark-extension-frontmatter": "^2.0.0",
     "yaml": "^2.9.1",
-    "zod": "^4.6.5"
+    "zod": "^4.6.7"
   },
   "packageManager": "npm@11.21.0"
 }
