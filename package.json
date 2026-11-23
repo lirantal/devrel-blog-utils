@@ -109,9 +109,9 @@
     ]
   },
   "dependencies": {
-    "@ai-sdk/openai": "^4.0.96",
-    "@ai-sdk/openai-compatible": "^3.0.71",
-    "ai": "^7.0.143",
+    "@ai-sdk/openai": "^4.0.102",
+    "@ai-sdk/openai-compatible": "^3.0.78",
+    "ai": "^7.0.153",
     "mdast-util-from-markdown": "^2.1.0",
     "mdast-util-frontmatter": "^2.0.1",
     "mdast-util-to-markdown": "^2.2.0",
